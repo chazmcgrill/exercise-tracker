@@ -13,13 +13,23 @@ const UserSchema = new mongoose.Schema({
   }
 });
 
+const User = mongoose.model('User', UserSchema);
+
+app.use(express.static('public'));
+app.use(express.json())
+app.use(express.urlencoded({ extended: false }));
+
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/views/index.html');
 })
 
 // POST /api/exercise/new-user
 app.post('/exercise/new-user', (req, res) => {
-
+  const newUser = new User({username: req.body.username});
+  newUser.save((err, data) => {
+    if (err) return res.json({error: "Error Saving Username"});
+    res.json(data);
+  });
 });
 
 const port = process.env.PORT || 8080;
