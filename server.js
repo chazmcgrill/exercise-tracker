@@ -31,7 +31,7 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/views/index.html');
 });
 
-// create a new user
+// create a new user route
 app.post('/exercise/new-user', (req, res) => {
   const newUser = new User({username: req.body.username});
   newUser.save((err, data) => {
@@ -40,7 +40,7 @@ app.post('/exercise/new-user', (req, res) => {
   });
 });
 
-// add exercises
+// add exercises route
 app.post('/exercise/add', (req, res) => {
   const { username, description, duration, date } = req.body;
   User.findOne({username: username}, (err, data) => {
@@ -55,7 +55,7 @@ app.post('/exercise/add', (req, res) => {
   });
 });
 
-// get the exercises for user
+// get the exercises route
 app.get('/exercise/log', (req, res) => {
   if (req.query.username) {
     User.findOne({username: req.query.username}, (err, data) => {
@@ -75,7 +75,7 @@ app.get('/exercise/log', (req, res) => {
         if (req.query.limit) limit = Number(limit);
         
         Exercise.find(query).limit(limit).exec((err, data) => {
-          if (err) return res.json({error: "date error"});
+          if (err) return res.json({error: "error finding exercises"});
           res.json(data);
         });
       }
