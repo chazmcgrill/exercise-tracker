@@ -11,39 +11,40 @@
 <body>
   <h1>Exercise Tracker</h1>
 
-
-  <form action="./exercise/new-user" method="post">
-    <h3>Create a New User</h3>
-    <label for="username">Username</label>
-    <input type="text" name="username" required>
-    <input type="submit" value="Create User">
-  </form>
-
-  <form action="./exercise/add" method="post">
-    <h3>Add Exercise</h3>
-    <label for="username">Username</label>
-    <input type="text" name="username">
-    <label for="description">Description</label>
-    <input type="text" name="description">
-    <label for="duration">Duration (minutes)</label>
-    <input type="number" name="duration">
-    <label for="date">Date</label>
-    <input type="date" name="date">
-    <input type="submit" value="Add Exercise">
-  </form>
-
-  <form action="./exercise/log" method="get">
-    <h3>Exercise Log</h3>
-    <label for="username">Username</label>
-    <input type="text" name="username" placeholder="username">
-    <label for="limit">From</label>
-    <input type="date" name="from">
-    <label for="limit">To</label>
-    <input type="date" name="to">
-    <label for="limit">Limit</label>
-    <input type="number" name="limit" id="limit">
-    <input type="submit" value="Submit">
-  </form>
+  <div class="container">
+    <form action="./exercise/new-user" method="post">
+      <h3>Create a New User</h3>
+      <label for="username">Username</label>
+      <input type="text" name="username" required>
+      <input type="submit" value="Create User">
+    </form>
+  
+    <form action="./exercise/add" method="post">
+      <h3>Add Exercise</h3>
+      <label for="username">Username</label>
+      <input type="text" name="username">
+      <label for="description">Description</label>
+      <input type="text" name="description">
+      <label for="duration">Duration (minutes)</label>
+      <input type="number" name="duration">
+      <label for="date">Date</label>
+      <input type="date" name="date">
+      <input type="submit" value="Add Exercise">
+    </form>
+  
+    <form action="./exercise/log" method="get">
+      <h3>Exercise Log</h3>
+      <label for="username">Username</label>
+      <input type="text" name="username" placeholder="username">
+      <label for="limit">From</label>
+      <input type="date" name="from">
+      <label for="limit">To</label>
+      <input type="date" name="to">
+      <label for="limit">Limit</label>
+      <input type="number" name="limit" id="limit">
+      <input type="submit" value="Submit">
+    </form>
+  </div>
 
   <footer>
     <p>coded by

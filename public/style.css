@@ -8,7 +8,9 @@ body {
 
 .container {
 	padding: 0;
-	margin-top: 40px;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
 }
 
 h1, h3 {
@@ -62,4 +64,14 @@ footer {
   text-align: center;
   margin-top: 40px;
   font-size: 0.7rem;
+}
+
+@media screen and (min-width: 900px) {
+  form {
+    flex-grow: 1;
+  }
+  .container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 }
