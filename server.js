@@ -2,8 +2,6 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 
-const MONGO_URL = 'mongodb://localhost:27017/exercise-tracker';
-
 mongoose.connect(MONGO_URL, { useNewUrlParser: true });
 
 const UserSchema = new mongoose.Schema({
@@ -76,7 +74,7 @@ app.get('/exercise/log', (req, res) => {
           query.date = { $lte: new Date(req.query.to) }
         }
   
-        limit = req.query.limit;
+        let limit = req.query.limit;
         if (req.query.limit) limit = Number(limit);
         
         Exercise.find(query).limit(limit).exec((err, data) => {

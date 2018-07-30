@@ -5,27 +5,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Exercise Tracker</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <h1>Exercise Tracker</h1>
 
+
   <form action="./exercise/new-user" method="post">
-    <label for="username">Create a New User</label>
-    <input type="text" name="username">
+    <h3>Create a New User</h3>
+    <label for="username">Username</label>
+    <input type="text" name="username" required>
     <input type="submit" value="Create User">
   </form>
 
   <form action="./exercise/add" method="post">
-    <label for="username">New Exercise</label>
+    <h3>Add Exercise</h3>
+    <label for="username">Username</label>
     <input type="text" name="username">
+    <label for="description">Description</label>
     <input type="text" name="description">
+    <label for="duration">Duration (minutes)</label>
     <input type="number" name="duration">
+    <label for="date">Date</label>
     <input type="date" name="date">
     <input type="submit" value="Add Exercise">
   </form>
 
   <form action="./exercise/log" method="get">
-    <label for="username">Exercise Log</label>
+    <h3>Exercise Log</h3>
+    <label for="username">Username</label>
     <input type="text" name="username" placeholder="username">
     <label for="limit">From</label>
     <input type="date" name="from">
@@ -35,6 +44,12 @@
     <input type="number" name="limit" id="limit">
     <input type="submit" value="Submit">
   </form>
+
+  <footer>
+    <p>coded by
+      <a href="http://www.charlietaylorcoder.com/">charlie taylor</a>
+    </p>
+  </footer>
   
 </body>
 </html>
