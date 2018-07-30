@@ -7,7 +7,24 @@
   <title>Exercise Tracker</title>
 </head>
 <body>
-  <h1>Working</h1>
+  <h1>Exercise Tracker</h1>
+
+  <form action="./exercise/new-user" method="post">
+    <label for="username">Create a New User</label>
+    <input type="text" name="username">
+    <input type="submit" value="Create User">
+  </form>
+
+  <form action="./exercise/add" method="post">
+    <label for="username">New Exercise</label>
+    <input type="text" name="username">
+    <input type="text" name="description">
+    <input type="number" name="duration">
+    <input type="date" name="date">
+    <input type="submit" value="Add Exercise">
+  </form>
+
+  <form action="" method="get"></form>
   
 </body>
 </html>
