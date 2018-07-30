@@ -50,7 +50,7 @@ app.post('/exercise/add', (req, res) => {
   User.findOne({username: username}, (err, data) => {
     if (err) return res.json({error: "User Not Found"});
     const newExercise = new Exercise({
-      username: username, description: description, duration: duration, date: date
+      username, description, duration, date
     });
     newExercise.save((err, data) => {
       if (err) return res.json({ error: "Error Saving Exercise" });
@@ -61,26 +61,32 @@ app.post('/exercise/add', (req, res) => {
 
 // get the exercises route
 app.get('/exercise/log', (req, res) => {
-  if (req.query.username) {
-    User.findOne({username: req.query.username}, (err, data) => {
+  const {username} = req.query; 
+  if (username) {
+    User.findOne({ username }, (err, data) => {
       if (err) return res.json({error: "Invalid Username"});
 
-      let query = {username: req.query.username};
-      if (req.query.from && req.query.to) {
-        query.date = { $gte: new Date(req.query.from), $lte: new Date(req.query.to) } 
-      } else if (req.query.from) {
-        query.date = { $gte: new Date(req.query.from) }
-      } else if (req.query.to) {
-        query.date = { $lte: new Date(req.query.to) }
+      if (data) {
+        let query = {username: req.query.username};
+        if (req.query.from && req.query.to) {
+          query.date = { $gte: new Date(req.query.from), $lte: new Date(req.query.to) } 
+        } else if (req.query.from) {
+          query.date = { $gte: new Date(req.query.from) }
+        } else if (req.query.to) {
+          query.date = { $lte: new Date(req.query.to) }
+        }
+  
+        limit = req.query.limit;
+        if (req.query.limit) limit = Number(limit);
+        
+        Exercise.find(query).limit(limit).exec((err, data) => {
+          if (err) return res.json({error: "error finding exercises"});
+          res.json(data);
+        });
+      } else {
+        return res.json({ error: "Invalid Username" });
       }
 
-      limit = req.query.limit;
-      if (req.query.limit) limit = Number(limit);
-      
-      Exercise.find(query).limit(limit).exec((err, data) => {
-        if (err) return res.json({error: "error finding exercises"});
-        res.json(data);
-      });
     });
   } else {
     res.json({error: "Username not provided"})
